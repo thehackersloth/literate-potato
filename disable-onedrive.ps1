@@ -19,8 +19,8 @@ function DisableOneDrive {
 
     # Unlink OneDrive from the User Account
     taskkill /f /im OneDrive.exe
-    $env:LOCALAPPDATA + "\Microsoft\OneDrive\onedrive.exe" /reset
-    $env:LOCALAPPDATA + "\Microsoft\OneDrive\onedrive.exe" /shutdown
+    Start-Process -FilePath "$env:LOCALAPPDATA\Microsoft\OneDrive\onedrive.exe" -ArgumentList "/reset" -Wait
+    Start-Process -FilePath "$env:LOCALAPPDATA\Microsoft\OneDrive\onedrive.exe" -ArgumentList "/shutdown" -Wait
     
     # Remove OneDrive from File Explorer's Navigation Pane
     Set-ItemProperty -Path $registryPathNavigation -Name "System.IsPinnedToNameSpaceTree" -Value 0 -Type DWord
@@ -34,7 +34,7 @@ function EnableOneDrive {
     Remove-ItemProperty -Path $registryPathMain -Name "DisableFileSyncNGSC" -ErrorAction SilentlyContinue
     
     # Re-link OneDrive to User Account (Requires User Interaction)
-    $env:LOCALAPPDATA + "\Microsoft\OneDrive\onedrive.exe" 
+    Start-Process -FilePath "$env:LOCALAPPDATA\Microsoft\OneDrive\onedrive.exe" 
     
     # Restore OneDrive in File Explorer's Navigation Pane
     Set-ItemProperty -Path $registryPathNavigation -Name "System.IsPinnedToNameSpaceTree" -Value 1 -Type DWord
