@@ -1,6 +1,6 @@
 #no warranty the sloth is not responsable for any problems
 #updatedregentries
-#tested on windows 10
+#works Widnows 11
 param (
     [Parameter(Mandatory = $true)]
     [ValidateSet("Disable", "Enable")]
