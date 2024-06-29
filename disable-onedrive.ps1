@@ -1,6 +1,7 @@
 #no warranty the sloth is not responsable for any problems
 #updatedregentries
 #works Widnows 11
+#must type enable to enable and disable to disable
 param (
     [Parameter(Mandatory = $true)]
     [ValidateSet("Disable", "Enable")]
